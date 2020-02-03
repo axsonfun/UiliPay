@@ -1,13 +1,16 @@
 <!--
-名称：UiliPay（柚狸收款页面API版）
-版本：β 0.1
-简介：一款免费公益的API调用收款页面
-特色：1. 一款基于MDUI的精美收款页面；2. 支持随时提交数值更改页面内容。
-开源项目：1. Coding[https://dev.tencent.com/u/uilicn/p/uilipay-api]
-2.Github[https://github.com/uilicn/UiliPay-API]
-开发维护：不朽千秋<https://uili.cn>[541420514@qq.com]
+名称：UiliPay
+版本：β 0.3
+简介：免费公益的API参数提交调用收款页面
+特色：
+1. 一款基于 MDUI 的精美收款页面；
+2. 支持任意提交参数更改三网收款码；
+3. 支持任意提交参数更改个人收款信息；
+4. 支持任意提交参数更改网页背景及配色；
+5. 点击按钮快速复制网址与参数分享使用。
+开源项目：Github https://github.com/Kiuccess/UiliPay-API
+开发维护：Kiuccess [kiuccess@qq.com]
 -->
-
 <html>
 <head>
     <meta charset="UTF-8">
@@ -20,19 +23,19 @@
  <link rel="stylesheet" href="css/mdui.min.css">
 <script src="js/mdui.min.js"></script>
  <style>
-html,body {height: 100%;margin: 0;padding: 0;}body {font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;align-items: center;display: flex;}a{text-decoration:none;}#container {max-width: 400px;flex-basis: 100%;margin: 0 auto;background: #FFF;border-radius: 10px;box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);overflow: hidden;}#container #hero-img {width: 100%;height: 100px;background: #f4a7b9;}#container #profile-img {width: 120px;height: 120px;margin: -80px auto 0 auto;border: 6px solid #FFF;border-radius: 50%;box-shadow: 0 0 5px rgba(90, 90, 90, 0.3);}#container #profile-img img {width: 100%;background: #FFF;border-radius: 50%;}#container #content {text-align: center;width: 320px;margin: 0 auto;padding: 0 0 50px 0;}#container #content h1 {font-size: 29px;font-weight: 500;margin: 50px 0 0 0;}#container #content p {font-size: 18px;font-weight: 400;line-height: 1.4;color: #666;margin: 15px 0 40px 0;}#container #content a {color: #CCC;font-size: 14px;margin: 0 10px;transition: color .3s ease-in-out;-webkit-transition: color .3s ease-in-out;}#container #content a:hover {color: #f4a7b9;}.btn{background: none repeat scroll 0 0 #1BA1E2; border: 0 none; border-radius: 2px; color: #FFFFFF !important; cursor: pointer; font-family: "Open Sans","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",Arial,Verdana,Tahoma,sans-serif; font-size: 14px;  padding: 6px 10%;}.btn:hover,.yanshibtn:hover{background: none repeat scroll 0 0 #9B59B6; border: 0 none; border-radius: 2px; color: #FFFFFF!important; cursor: pointer; font-family: "Open Sans","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",Arial,Verdana,Tahoma,sans-serif; font-size: 14px; padding: 8px 10%;}
+html,body {height: 100%;margin: 0;padding: 0;}body {font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;align-items: center;display: flex;}a{text-decoration:none;}#container {max-width: 400px;flex-basis: 100%;margin: 0 auto;background: #FFF;border-radius: 10px;box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);overflow: hidden;}#container #hero-img {width: 100%;height: 100px;background: #f6a900;}#container #profile-img {width: 120px;height: 120px;margin: -80px auto 0 auto;border: 6px solid #FFF;border-radius: 50%;box-shadow: 0 0 5px rgba(90, 90, 90, 0.3);}#container #profile-img img {width: 100%;background: #FFF;border-radius: 50%;}#container #content {text-align: center;width: 320px;margin: 0 auto;padding: 0 0 50px 0;}#container #content h1 {font-size: 29px;font-weight: 500;margin: 50px 0 0 0;}#container #content p {font-size: 18px;font-weight: 400;line-height: 1.4;color: #666;margin: 15px 0 40px 0;}#container #content a {color: #CCC;font-size: 14px;margin: 0 10px;transition: color .3s ease-in-out;-webkit-transition: color .3s ease-in-out;}#container #content a:hover {color: #f6a900;}.btn{background: none repeat scroll 0 0 #1BA1E2; border: 0 none; border-radius: 2px; color: #FFFFFF !important; cursor: pointer; font-family: "Open Sans","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",Arial,Verdana,Tahoma,sans-serif; font-size: 14px;  padding: 6px 10%;}.btn:hover,.yanshibtn:hover{background: none repeat scroll 0 0 #9B59B6; border: 0 none; border-radius: 2px; color: #FFFFFF!important; cursor: pointer; font-family: "Open Sans","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",Arial,Verdana,Tahoma,sans-serif; font-size: 14px; padding: 8px 10%;}
 </style>
-
 <script type="text/javascript">
 var postok="1";
-var user ="不朽千秋";
-var qqpic = "static/qq.jpg";
-var wxpic ="static/wx.jpg";
-var zfbpic ="static/zfb.jpg";
-var userpic ="static/avatar.jpg";
-var tips ="欢迎来到我的收款页欢迎(*´▽｀)ノ~";
+var user ="Kiuccess";
+var qqpic = "https://ae01.alicdn.com/kf/HTB10MAjalKw3KVjSZFO761rDVXar.png";
+var wxpic ="https://ae01.alicdn.com/kf/HTB1Lh.maa1s3KVjSZFA760_ZXXav.png";
+var zfbpic ="https://ae01.alicdn.com/kf/Hcd406bfbfd8f4f32bc36c9f22a8395b5p.png";
+var userpic ="https://pic.downk.cc/item/5e323c992fb38b8c3cf4d57c.png";
+var tips ="欢迎来到我的收款页(*´▽｀)ノ~";
+var color="#f6a900";
+var beijing="https://acg.toubiec.cn/random";
 var Request=new UrlSearch();
-
 function UrlSearch() 
 {
    var name,value; 
@@ -54,83 +57,117 @@ postok="0";
     } 
 } ;
 if (postok=="0"){
-  user = "不朽千秋";
-  qqpic = "static/qq.jpg";
-  wxpic ="static/wx.jpg";
-zfbpic ="static/zfb.jpg";
-userpic ="static/avatar.jpg";
-tips ="欢迎来到我的收款页欢迎(*´▽｀)ノ~";
+  user = "Kiuccess";
+  qqpic = "https://ae01.alicdn.com/kf/HTB10MAjalKw3KVjSZFO761rDVXar.png";
+  wxpic ="https://ae01.alicdn.com/kf/HTB1Lh.maa1s3KVjSZFA760_ZXXav.png";
+zfbpic ="https://ae01.alicdn.com/kf/Hcd406bfbfd8f4f32bc36c9f22a8395b5p.png";
+userpic ="https://pic.downk.cc/item/5e323c992fb38b8c3cf4d57c.png";
+color="#f6a900";
+beijing="https://acg.toubiec.cn/random";
+tips ="欢迎来到我的收款页(*´▽｀)ノ~";
   }
 else {
   if (Request.user==""){
-  user = "不朽千秋";
+  user = "Kiuccess";
   }
 else {
   user = Request.user;
   };
   if (Request.tips==""){
-  tips = "欢迎来到我的收款页欢迎(*´▽｀)ノ~";
+  tips = "欢迎来到我的收款页(*´▽｀)ノ~";
   }
 else {
   tips = Request.tips;
   };
   if (Request.qqpic==""){
-  qqpic = "static/qq.jpg";
+  qqpic = "https://ae01.alicdn.com/kf/HTB10MAjalKw3KVjSZFO761rDVXar.png";
   }
 else {
   qqpic = Request.qqpic;
   };
   if (Request.wxpic==""){
-  wxpic = "static/wx.jpg";
+  wxpic = "https://ae01.alicdn.com/kf/HTB1Lh.maa1s3KVjSZFA760_ZXXav.png";
   }
 else {
   wxpic = Request.wxpic;
   };
   if (Request.zfbpic==""){
-  zfbpic = "static/zfb.jpg";
+  zfbpic = "https://ae01.alicdn.com/kf/Hcd406bfbfd8f4f32bc36c9f22a8395b5p.png";
   }
 else {
   zfbpic = Request.zfbpic;
   };
   if (Request.userpic==""){
-  userpic = "static/avatar.jpg";
+  userpic = "https://pic.downk.cc/item/5e323c992fb38b8c3cf4d57c.png";
   }
 else {
   userpic = Request.userpic;
+  };
+  if (Request.color==""){
+  color = "#f6a900";
+  }
+else {
+  color = Request.color;
+  };
+    if (Request.beijing==""){
+  beijing = "https://acg.toubiec.cn/random";
+  }
+else {
+  beijing = Request.beijing;
   };
   };
   window.onload = function(){
   gettp();
 };
-</script>
-<script>
 function gettp()
 {
 document.getElementById('hquser').src = userpic;
 document.getElementById('hqqq').src = qqpic;
 document.getElementById('hqwx').src = wxpic;
 document.getElementById('hqzfb').src = zfbpic;
-}
+};
+function copyContent(){ 
+var text = document.getElementById("text").innerText;
+   var input = document.getElementById("input");
+   input.value = text; // 修改文本框的内容
+   input.select(); // 选中文本
+   document.execCommand("copy"); // 执行浏览器复制命令
+   mdui.snackbar({
+    message: '复制成功(*^_^*)',
+    position: 'top'
+  });
+    };
 </script>
 </head>
-<body style="background-image: url(https://acg.toubiec.cn/random);" class="mdui-center">
+<script>
+var url = window.location.href;
+	document.write('<style>#loader:before, #loader:after{background:'+color+'}#loader img{box-shadow: 0 0 0 3px '+color+'}#container #hero-img{background:'+color+'}#ss_menu>div i{background:'+color+'}#ss_menu>.menu1 .share{background:'+color+'}#ss_menu>div i:hover{color:'+color+';border:1px solid '+color+'}.mdui-btn, .mdui-fab{color:'+color+'}h1{color:'+color+'}</style>'); 
+    document.write('<body style="background-image: url('+beijing+');" class="mdui-center">'); 
+	document.write('<p id="text" style="display:none">'+url+'</p>'); 
+</script>
+<textarea id="input" style="width:0;height:0"></textarea>
 <div id="loader">
     <figure >
-        <img id="jiazai" src="static/avatar.jpg"/> 
+<script>
+	document.write('<img id="jiazai" src="'+userpic+'"/>'); 
+</script>
+         
     </figure>
 </div>
 		<div class="mdui-container">
 	<div id='container' class="mdui-center mdui-shadow-5" >
-	<div id='hero-img'>
-	</div>
+<div id="hero-img"></div>
 	<div id='profile-img' class="mdui-ripple">
-		<img id="hquser" class=“mdui-img-fluid” mdui-tooltip="{content: '本收款页面由 不朽千秋 提供', position: 'top'}" src='static/avatar.jpg'/>
+	<script>
+	document.write('<img id="hquser" class=“mdui-img-fluid” mdui-tooltip="{content: "本收款页面由 Kiuccess 提供", position: "top"}" src='+userpic+'/>'); 
+</script>
+		
 	</div>
 	<script>
 	var xinuser = decodeURI(user,"UTF-8");
 	document.write('<h1 style="text-align:center">'+xinuser+'</h1>'); 
     document.write('<title>['+xinuser+'] 的收款页</title>'); 
-	document.write('<button class="mdui-btn mdui-ripple mdui-col-xs-12">'+decodeURI(tips,"UTF-8")+'</button>'); 
+	document.write('<button class="mdui-btn mdui-ripple mdui-col-xs-12" onclick="copyContent();" >'+decodeURI(tips,"UTF-8")+'</button>'); 
 </script>
 </div>
 </div>
@@ -157,7 +194,7 @@ document.getElementById('hqzfb').src = zfbpic;
 			<div>
 				<i class="iconfont icon-zhifubao" mdui-dialog="{target: '#zfb'}"></i>
 			</div>
-			<div onclick="window.open('https://github.com/uilicn/UiliPay-API','_self')"> 
+			<div onclick="window.open('https://github.com/Kiuccess/UiliPay-API','_self')"> 
 				<i class="iconfont icon-apiwendang"></i>
 			</div>
 			<div class='menu1'>
@@ -210,7 +247,6 @@ document.getElementById('hqzfb').src = zfbpic;
 
 		new SVGMenu( document.getElementById( 'menu' ) );
 	})();
-
 $(document).ready(function (ev) {
     var toggle = $('#ss_toggle');
     var menu = $('#ss_menu');
@@ -238,15 +274,15 @@ $(document).ready(function (ev) {
 });
 </script>
 <div class="mdui-dialog" id="qq">
- <img id="hqqq" class="mdui-dialog-content mdui-container mdui-img-fluid" src=""/>
+ <img id="hqqq" class="mdui-dialog-content mdui-container mdui-img-fluid" src="" style="width: unset"/>
 </div>
 <div class="mdui-dialog" id="wx">
- <img id="hqwx" class="mdui-dialog-content mdui-container mdui-img-fluid" src=""/>
+ <img id="hqwx" class="mdui-dialog-content mdui-container mdui-img-fluid" src="" style="width: unset"/>
 </div>
 <div class="mdui-dialog" id="zfb">
- <img id="hqzfb" class="mdui-dialog-content mdui-container mdui-img-fluid" src=""/>
+ <img id="hqzfb" class="mdui-dialog-content mdui-container mdui-img-fluid" src="" style="width: unset"/>
 </div>
 <script src="js/paul.js"></script>
 </body>
-<footer><span style="font-family:arial;">&copy;2019 不朽千秋 Uili.CN</span></footer>
+<footer><span style="font-family:arial;">&copy; 2020 Kiuccess.</span></footer>
 </html>
